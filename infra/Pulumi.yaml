@@ -1,0 +1,10 @@
+name: aurora
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: '-'
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/bf63e434-44f7-4f8b-a44f-836219f286c4.zip

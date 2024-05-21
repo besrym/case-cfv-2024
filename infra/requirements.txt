@@ -1,0 +1,2 @@
+pulumi>=3
+pulumi_openstack>=3.15.2
