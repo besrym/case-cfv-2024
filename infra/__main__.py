@@ -26,6 +26,19 @@ sec_group_rule_ssh = openstack.networking.SecGroupRule(
     opts=resource_opts,
 )
 
+sec_group_rule_cert = openstack.networking.SecGroupRule(
+    "sec-rule-cert-1",
+    direction="ingress",
+    ethertype="IPv4",
+    port_range_max=80,
+    port_range_min=80,
+    protocol="tcp",
+    remote_ip_prefix="0.0.0.0/0",
+    description="LetsEncrypt Certbot",
+    security_group_id=aurora_sec_group.id,
+    opts=resource_opts,
+)
+
 sec_group_rule_mail_inbound_1 = openstack.networking.SecGroupRule(
     "mail-inbound-1",
     direction="ingress",
@@ -48,6 +61,32 @@ sec_group_rule_mail_inbound_2 = openstack.networking.SecGroupRule(
     protocol="tcp",
     remote_ip_prefix="0.0.0.0/0",
     description="Allow inbound SMTP traffic",
+    security_group_id=aurora_sec_group.id,
+    opts=resource_opts,
+)
+
+sec_group_rule_mail_inbound_3 = openstack.networking.SecGroupRule(
+    "mail-inbound-3",
+    direction="ingress",
+    ethertype="IPv4",
+    port_range_max=587,
+    port_range_min=587,
+    protocol="tcp",
+    remote_ip_prefix="0.0.0.0/0",
+    description="Allow inbound SMTP traffic",
+    security_group_id=aurora_sec_group.id,
+    opts=resource_opts,
+)
+
+sec_group_rule_mail_inbound_4 = openstack.networking.SecGroupRule(
+    "mail-inbound-4",
+    direction="ingress",
+    ethertype="IPv4",
+    port_range_max=993,
+    port_range_min=993,
+    protocol="tcp",
+    remote_ip_prefix="0.0.0.0/0",
+    description="Allow inbound IMAP over SSL traffic",
     security_group_id=aurora_sec_group.id,
     opts=resource_opts,
 )
@@ -77,32 +116,32 @@ sec_group_rule_mail_outbound_2 = openstack.networking.SecGroupRule(
     security_group_id=aurora_sec_group.id,
     opts=resource_opts,
 )
-#
-# sec_group_rule_tls = openstack.networking.SecGroupRule(
-#     "sec-rule-3",
-#     direction="ingress",
-#     ethertype="IPv4",
-#     port_range_max=443,
-#     port_range_min=443,
-#     protocol="tcp",
-#     remote_ip_prefix="0.0.0.0/0",
-#     description="Allow external access to port 443",
-#     security_group_id=aurora_sec_group.id,
-#     opts=resource_opts,
-# )
 
-# sec_group_rule_rcp = openstack.networking.SecGroupRule(
-#     "sec-rule-4",
-#     direction="ingress",
-#     ethertype="IPv4",
-#     port_range_max=8050,
-#     port_range_min=8050,
-#     protocol="tcp",
-#     remote_ip_prefix="0.0.0.0/0",
-#     description="Allow external access to port 8050",
-#     security_group_id=aurora_sec_group.id,
-#     opts=resource_opts,
-# )
+sec_group_rule_mail_outbound_3 = openstack.networking.SecGroupRule(
+    "mail-outbound-3",
+    direction="egress",
+    ethertype="IPv4",
+    port_range_max=587,
+    port_range_min=587,
+    protocol="tcp",
+    remote_ip_prefix="0.0.0.0/0",
+    description="Allow outbound SMTP traffic",
+    security_group_id=aurora_sec_group.id,
+    opts=resource_opts,
+)
+
+sec_group_rule_mail_outbound_4 = openstack.networking.SecGroupRule(
+    "mail-outbound-4",
+    direction="egress",
+    ethertype="IPv4",
+    port_range_max=993,
+    port_range_min=993,
+    protocol="tcp",
+    remote_ip_prefix="0.0.0.0/0",
+    description="Allow outbound IMAP over SSL traffic",
+    security_group_id=aurora_sec_group.id,
+    opts=resource_opts,
+)
 
 # >>>> network <<<<
 
